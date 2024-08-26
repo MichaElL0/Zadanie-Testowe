@@ -36,7 +36,7 @@ public class PlayerMouseLook : MonoBehaviour
 
 		//Player interaction with craftable objects
 
-		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hitInfo, 10, whatIsCraftable))
+		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hitInfo, 7, whatIsCraftable))
 		{
 			if (Input.GetKeyDown(KeyCode.E))
 			{

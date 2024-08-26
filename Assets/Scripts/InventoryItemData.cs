@@ -8,5 +8,13 @@ public class InventoryItemData : ScriptableObject
     public string id;
     public string displayName;
     public Sprite icon;
+    public ItemType type;
     public GameObject prefab;
+
+    public enum ItemType
+    {
+        Rock,
+        Wood,
+        Iron
+    }
 }
