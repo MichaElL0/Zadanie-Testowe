@@ -1,3 +1,4 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class InventoryUI : MonoBehaviour
     public static InventoryUI instance;
 
     public GameObject inventoryPanel;
-	public List<GameObject> inventoryItems;
+	public List<InventorySlot> inventoryItems;
 
 	private void Awake()
 	{
@@ -36,9 +37,18 @@ public class InventoryUI : MonoBehaviour
 		}
     }
 
-	public void UpdateUI()
+	public void UpdateUI(InventoryItemData item)
 	{
-		print("Update UI");
+		for(int i = 0; i < inventoryItems.Count; i++)
+		{
+			print(inventoryItems[i]);
+			if(inventoryItems[i].icon.sprite == null)
+			{
+				inventoryItems[i].ChangeSlotToActive(item);
+				return;
+			}
+
+		}
 	}
 
 }

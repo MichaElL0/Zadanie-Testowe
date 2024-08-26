@@ -21,7 +21,7 @@ public class InventorySystem : MonoBehaviour
 		{
 			inventory.Add(refItem);
 
-			InventoryUI.instance.UpdateUI();
+			InventoryUI.instance.UpdateUI(refItem);
 			return true;
 			
 		}

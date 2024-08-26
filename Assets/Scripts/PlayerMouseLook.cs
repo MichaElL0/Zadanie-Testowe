@@ -43,7 +43,6 @@ public class PlayerMouseLook : MonoBehaviour
 				if(hitInfo.transform.TryGetComponent<ItemObject>(out ItemObject item)) 
 				{
 					item.PickupItem();
-					print(item.name);
 				}
 			}
 
@@ -52,7 +51,6 @@ public class PlayerMouseLook : MonoBehaviour
 			{
 				outline = hitInfo.transform.gameObject.AddComponent<Outline>();
 			}
-
 			outline.enabled = true;
 
 
