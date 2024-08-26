@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMouseLook : MonoBehaviour
 {
@@ -11,9 +12,10 @@ public class PlayerMouseLook : MonoBehaviour
     [Header("Interacting with objects")]
     public LayerMask whatIsCraftable;
 
+	private GameObject previousHitObject = null;
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -31,14 +33,50 @@ public class PlayerMouseLook : MonoBehaviour
 		transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 		playerBody.Rotate(Vector3.up * mouseX);
 
-        //Player interaction with craftable objects
 
-		if (Input.GetKeyDown(KeyCode.E) && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hitInfo, 10, whatIsCraftable))
+		//Player interaction with craftable objects
+
+		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hitInfo, 10, whatIsCraftable))
 		{
-            print(hitInfo.collider.name);
-        }
+			if (Input.GetKeyDown(KeyCode.E))
+			{
+				print(hitInfo.collider.name);
+			}
+
+			//Add outline to looked at object
+			if (!hitInfo.transform.gameObject.TryGetComponent<Outline>(out var outline))
+			{
+				outline = hitInfo.transform.gameObject.AddComponent<Outline>();
+			}
+
+			outline.enabled = true;
+
+
+			if (previousHitObject != null && previousHitObject != hitInfo.transform.gameObject)
+			{
+				var previousOutline = previousHitObject.GetComponent<Outline>();
+				if (previousOutline != null)
+				{
+					previousOutline.enabled = false;
+				}
+			}
+
+			previousHitObject = hitInfo.transform.gameObject;
+		}
+		else
+		{
+			if (previousHitObject != null)
+			{
+				var previousOutline = previousHitObject.GetComponent<Outline>();
+				if (previousOutline != null)
+				{
+					previousOutline.enabled = false;
+				}
+				previousHitObject = null;
+			}
+		}
 
 
 
-    }
+	}
 }
