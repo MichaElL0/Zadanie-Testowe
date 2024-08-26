@@ -4,10 +4,23 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
-    public GameObject inventoryPanel;
+    public static InventoryUI instance;
 
-    // Update is called once per frame
-    void Update()
+    public GameObject inventoryPanel;
+	public List<GameObject> inventoryItems;
+
+	private void Awake()
+	{
+		if (instance != null)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		instance = this;
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         if(Input.GetKeyUp(KeyCode.Tab) && inventoryPanel.activeInHierarchy == false) 
         {
@@ -22,4 +35,10 @@ public class InventoryUI : MonoBehaviour
 			Time.timeScale = 1f;
 		}
     }
+
+	public void UpdateUI()
+	{
+		print("Update UI");
+	}
+
 }

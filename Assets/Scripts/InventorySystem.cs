@@ -6,6 +6,7 @@ public class InventorySystem : MonoBehaviour
 {
 	public static InventorySystem instance;
 	public List<InventoryItemData> inventory;
+	int inventorySpace = 21;
 
 	private void Awake()
 	{
@@ -14,18 +15,30 @@ public class InventorySystem : MonoBehaviour
 		inventory = new List<InventoryItemData>();
 	}
 
-	public void Add(InventoryItemData refItem)
+	public bool Add(InventoryItemData refItem)
 	{
-		//InventoryItem newItem = new InventoryItem(refItem);
-		inventory.Add(refItem);
-		print("--");
+		if(inventory.Count < inventorySpace)
+		{
+			inventory.Add(refItem);
+
+			InventoryUI.instance.UpdateUI();
+			return true;
+			
+		}
+		else 
+		{
+			Debug.Log("Inventory is Full!");
+			return false;
+		}
+
+		
 	}
 
-	//public void Remove(InventoryItem refItem)
-	//{
-	//	print("Remove item");
-	//	inventory.Remove(refItem);
-	//}
+	public void Remove(InventoryItemData refItem)
+	{
+		print("Remove item");
+		inventory.Remove(refItem);
+	}
 
-	
+
 }

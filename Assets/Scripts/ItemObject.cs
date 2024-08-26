@@ -8,7 +8,16 @@ public class ItemObject : MonoBehaviour
 
     public void PickupItem()
     {
-        InventorySystem.instance.Add(referenceItem);
-        Destroy(gameObject);
+		bool wasAdded = InventorySystem.instance.Add(referenceItem);
+
+        if (wasAdded)
+        {
+			Destroy(gameObject);
+		}
+        else
+        {
+			Debug.Log("Item could not be picked up. Inventory is full.");
+		}
+        
     }
 }
