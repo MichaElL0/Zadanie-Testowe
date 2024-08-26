@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: InventoryItem_Rock
   displayName: Rock
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: c5e2adea48efbf14c85605b32288f5ab, type: 3}
+  type: 0
   prefab: {fileID: 9210977408934515593, guid: d836af7b94dadc7478b21704fbfc5e3f, type: 3}

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: InventoryItem_Wood
   displayName: Wood
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 71cf67140511c864d9a12361b009c66c, type: 3}
+  type: 0
   prefab: {fileID: 2938241727727550167, guid: 94647f4217e9597428267085090e7937, type: 3}

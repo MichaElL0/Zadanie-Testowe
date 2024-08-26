@@ -36,11 +36,15 @@ public class PlayerMouseLook : MonoBehaviour
 
 		//Player interaction with craftable objects
 
-		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hitInfo, 7, whatIsCraftable))
+		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hitInfo, 5, whatIsCraftable))
 		{
 			if (Input.GetKeyDown(KeyCode.E))
 			{
-				print(hitInfo.collider.name);
+				if(hitInfo.transform.TryGetComponent<ItemObject>(out ItemObject item)) 
+				{
+					item.PickupItem();
+					print(item.name);
+				}
 			}
 
 			//Add outline to looked at object
