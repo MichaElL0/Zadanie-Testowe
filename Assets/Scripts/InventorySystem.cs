@@ -35,9 +35,9 @@ public class InventorySystem : MonoBehaviour
 		
 	}
 
-	public void Remove(InventoryItemData refItem)
+	public void Remove(InventoryItem refItem)
 	{
-		inventory.Remove(new InventoryItem(refItem));
+		inventory.Remove(refItem);
 		print("Remove item");
 		
 	}

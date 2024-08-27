@@ -8,12 +8,11 @@ public class InventorySlot : MonoBehaviour
 {
     public Image icon;
     public Button button;
-    public InventoryItem itemInstance;
+    InventoryItem itemInstance;
     InventoryItemData itemData;
 
     public void ChangeSlotToActive(InventoryItem item)
     {
-        //InventoryItem newItem = new InventoryItem(item);
         itemData = item.itemType;
         itemInstance = item;
 		icon.sprite = item.sprite;
@@ -24,5 +23,13 @@ public class InventorySlot : MonoBehaviour
 	{
         icon.sprite = null;
 		button.interactable = false;
+	}
+
+	private void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.R) && itemInstance != null)
+        {
+            InventorySystem.instance.Remove(itemInstance);
+        }
 	}
 }

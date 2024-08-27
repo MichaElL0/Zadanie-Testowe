@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1544060030318109503}
   - component: {fileID: 8367839715329994031}
   - component: {fileID: 1216258576802937091}
+  - component: {fileID: 3647583172478126205}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -90,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -120,7 +121,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8367839715329994031}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3647583172478126205}
+        m_TargetAssemblyTypeName: ItemsRemoveUI, Assembly-CSharp
+        m_MethodName: RemoveItemUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3647583172478126205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901472664467700900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228ab39e461cf1a44b2683b636b1b013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventorySlot: {fileID: 2194379221440504376}
 --- !u!1 &4162318173335866193
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +333,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 34343830685455533}
   button: {fileID: 1216258576802937091}
+  itemInstance:
+    itemType: {fileID: 0}
+    sprite: {fileID: 0}
+    prefab: {fileID: 0}
+  itemData: {fileID: 0}
 --- !u!1 &7772056541647070672
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +454,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 4752437589330814185}
   m_OnClick:
     m_PersistentCalls:
