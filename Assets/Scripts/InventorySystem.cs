@@ -5,23 +5,24 @@ using UnityEngine;
 public class InventorySystem : MonoBehaviour
 {
 	public static InventorySystem instance;
-	public List<InventoryItemData> inventory;
-	int inventorySpace = 21;
+	public List<InventoryItem> inventory;
+	public int inventorySpace = 21;
 
 	private void Awake()
 	{
 		instance = this;
 
-		inventory = new List<InventoryItemData>();
+		inventory = new List<InventoryItem>();
 	}
 
 	public bool Add(InventoryItemData refItem)
 	{
 		if(inventory.Count < inventorySpace)
 		{
-			inventory.Add(refItem);
+			InventoryItem newItem = new InventoryItem(refItem);
+			inventory.Add(new InventoryItem(refItem));
 
-			InventoryUI.instance.UpdateUI(refItem);
+			InventoryUI.instance.UpdateUI(newItem);
 			return true;
 			
 		}
@@ -36,8 +37,9 @@ public class InventorySystem : MonoBehaviour
 
 	public void Remove(InventoryItemData refItem)
 	{
+		inventory.Remove(new InventoryItem(refItem));
 		print("Remove item");
-		inventory.Remove(refItem);
+		
 	}
 
 

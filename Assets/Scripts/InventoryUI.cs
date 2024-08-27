@@ -37,11 +37,10 @@ public class InventoryUI : MonoBehaviour
 		}
     }
 
-	public void UpdateUI(InventoryItemData item)
+	public void UpdateUI(InventoryItem item)
 	{
 		for(int i = 0; i < inventoryItems.Count; i++)
 		{
-			print(inventoryItems[i]);
 			if(inventoryItems[i].icon.sprite == null)
 			{
 				inventoryItems[i].ChangeSlotToActive(item);

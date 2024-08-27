@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,10 +8,15 @@ public class InventorySlot : MonoBehaviour
 {
     public Image icon;
     public Button button;
+    public InventoryItem itemInstance;
+    InventoryItemData itemData;
 
-    public void ChangeSlotToActive(InventoryItemData item)
+    public void ChangeSlotToActive(InventoryItem item)
     {
-        icon.sprite = item.icon;
+        //InventoryItem newItem = new InventoryItem(item);
+        itemData = item.itemType;
+        itemInstance = item;
+		icon.sprite = item.sprite;
         button.interactable = true;
     }
 

@@ -1,14 +1,19 @@
 using System;
+using UnityEngine;
 
 
 [Serializable]
 public class InventoryItem
 {
-    public InventoryItemData item {  get; private set; }
+    public InventoryItemData itemType;
+    public Sprite sprite;
+    public GameObject prefab;
 
     public InventoryItem(InventoryItemData newItem)
     {
-        item = newItem; ;
+        itemType = newItem;
+        sprite = newItem.icon;
+        prefab = newItem.prefab;
     }
 
     

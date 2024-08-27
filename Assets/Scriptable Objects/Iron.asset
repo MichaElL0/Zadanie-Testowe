@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5dcdf6d04e571e43b79685445f66f5c, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: 
-  id: InventoryItem_Iron
-  displayName: Iron
   icon: {fileID: 21300000, guid: d783627922c461646b466f353905aeaf, type: 3}
-  type: 0
+  type: 2
   prefab: {fileID: 7561183756215257130, guid: 213feff0dd358994c9d4f9f40dd2be1a, type: 3}
