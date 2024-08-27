@@ -122,9 +122,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3647583172478126205}
-        m_TargetAssemblyTypeName: ItemsRemoveUI, Assembly-CSharp
-        m_MethodName: RemoveItemUI
+      - m_Target: {fileID: 2194379221440504376}
+        m_TargetAssemblyTypeName: InventorySlot, Assembly-CSharp
+        m_MethodName: RemoveItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -337,7 +337,6 @@ MonoBehaviour:
     itemType: {fileID: 0}
     sprite: {fileID: 0}
     prefab: {fileID: 0}
-  itemData: {fileID: 0}
 --- !u!1 &7772056541647070672
 GameObject:
   m_ObjectHideFlags: 0

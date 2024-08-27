@@ -37,7 +37,7 @@ public class InventoryUI : MonoBehaviour
 		}
     }
 
-	public void UpdateUI(InventoryItem item)
+	public void UpdateUI(ItemInstance item)
 	{
 		for(int i = 0; i < inventoryItems.Count; i++)
 		{

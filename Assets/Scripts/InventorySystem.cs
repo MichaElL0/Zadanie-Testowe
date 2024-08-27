@@ -1,43 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class InventorySystem : MonoBehaviour
 {
 	public static InventorySystem instance;
-	public List<InventoryItem> inventory;
+
+	public List<ItemInstance> inventoryItems;
 	public int inventorySpace = 21;
 
 	private void Awake()
 	{
 		instance = this;
 
-		inventory = new List<InventoryItem>();
+		inventoryItems = new List<ItemInstance>();
 	}
 
-	public bool Add(InventoryItemData refItem)
+	public bool AddItem(InventoryItemData item)
 	{
-		if(inventory.Count < inventorySpace)
-		{
-			InventoryItem newItem = new InventoryItem(refItem);
-			inventory.Add(new InventoryItem(refItem));
+		ItemInstance itemInstance = new ItemInstance(item);
 
-			InventoryUI.instance.UpdateUI(newItem);
+		for (int i = 0; i < inventoryItems.Count; i++)
+		{
+			if (inventoryItems[i] == null)
+			{
+				inventoryItems[i] = itemInstance;
+				return true;
+			}
+		}
+
+		if (inventoryItems.Count < inventorySpace)
+		{
+			inventoryItems.Add(itemInstance);
+			InventoryUI.instance.UpdateUI(itemInstance);
 			return true;
-			
-		}
-		else 
-		{
-			Debug.Log("Inventory is Full!");
-			return false;
 		}
 
-		
+		Debug.Log("Inventory is Full!");
+		return false;
+
+		//if (inventoryItems.Count < inventorySpace)
+		//{
+		//	inventoryItems.Add(itemInstance);
+
+		//	InventoryUI.instance.UpdateUI(itemInstance);
+		//	return true;
+
+		//}
+		//else 
+		//{
+		//	Debug.Log("Inventory is Full!");
+		//	return false;
+		//}
+
 	}
 
-	public void Remove(InventoryItem refItem)
+	public void Remove(ItemInstance refItem)
 	{
-		inventory.Remove(refItem);
+		inventoryItems.Remove(refItem);
 		print("Remove item");
 		
 	}

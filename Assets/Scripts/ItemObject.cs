@@ -8,7 +8,7 @@ public class ItemObject : MonoBehaviour
 
     public void PickupItem()
     {
-		bool wasAdded = InventorySystem.instance.Add(referenceItem);
+		bool wasAdded = InventorySystem.instance.AddItem(referenceItem);
 
         if (wasAdded)
         {

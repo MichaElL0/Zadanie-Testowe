@@ -8,12 +8,10 @@ public class InventorySlot : MonoBehaviour
 {
     public Image icon;
     public Button button;
-    InventoryItem itemInstance;
-    InventoryItemData itemData;
+    [SerializeField]ItemInstance itemInstance;
 
-    public void ChangeSlotToActive(InventoryItem item)
+    public void ChangeSlotToActive(ItemInstance item)
     {
-        itemData = item.itemType;
         itemInstance = item;
 		icon.sprite = item.sprite;
         button.interactable = true;
@@ -25,11 +23,11 @@ public class InventorySlot : MonoBehaviour
 		button.interactable = false;
 	}
 
-	private void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.R) && itemInstance != null)
+    public void RemoveItem()
+    {
+        if(itemInstance != null)
         {
             InventorySystem.instance.Remove(itemInstance);
         }
-	}
+    }
 }
