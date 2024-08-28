@@ -38,4 +38,10 @@ public class CraftingSystem : MonoBehaviour
 		return false;
 
 	}
+
+	public void RemoveCraftingItem(ItemInstance item)
+	{
+		craftingItems.Remove(item);
+
+	}
 }

@@ -54,12 +54,5 @@ public class InventorySlot : MonoBehaviour
         {
             Debug.LogError("Crafting is full!");
         }
-
-        
-
-        
-
-        print("Add item to crafting list");
-        print("Update crafting item UI");
     }
 }

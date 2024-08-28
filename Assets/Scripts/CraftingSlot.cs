@@ -16,8 +16,15 @@ public class CraftingSlot : MonoBehaviour
 	{
 		onUnuse?.Invoke();
 		print("Move item back to inventory");
+
 		print("Remove item from crafting");
+
+		InventorySystem.instance.AddItem(itemInstance.itemType);
+		CraftingSystem.instance.RemoveCraftingItem(itemInstance);
+		ChangeCraftingSlotToUnactive();
+
 		print("Update UI");
+
 	}
 
 	public void ChangeCraftingSlotToActive(ItemInstance item)
