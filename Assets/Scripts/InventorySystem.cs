@@ -8,7 +8,9 @@ public class InventorySystem : MonoBehaviour
 	public static InventorySystem instance;
 
 	public List<ItemInstance> inventoryItems;
-	public int inventorySpace = 21;
+	public int inventorySpace = 14;
+
+	public Transform dropPoint;
 
 	private void Awake()
 	{
@@ -40,26 +42,13 @@ public class InventorySystem : MonoBehaviour
 		Debug.Log("Inventory is Full!");
 		return false;
 
-		//if (inventoryItems.Count < inventorySpace)
-		//{
-		//	inventoryItems.Add(itemInstance);
-
-		//	InventoryUI.instance.UpdateUI(itemInstance);
-		//	return true;
-
-		//}
-		//else 
-		//{
-		//	Debug.Log("Inventory is Full!");
-		//	return false;
-		//}
-
 	}
 
 	public void Remove(ItemInstance refItem)
 	{
 		inventoryItems.Remove(refItem);
 		print("Remove item");
+		Instantiate(refItem.prefab, dropPoint.position, Quaternion.identity);
 		
 	}
 
