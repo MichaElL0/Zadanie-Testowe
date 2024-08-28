@@ -9,6 +9,7 @@ public class InventoryUI : MonoBehaviour
 
     public GameObject inventoryPanel;
 	public List<InventorySlot> inventoryItems;
+	public List<CraftingSlot> craftingItems;
 
 	private void Awake()
 	{
@@ -37,13 +38,27 @@ public class InventoryUI : MonoBehaviour
 		}
     }
 
-	public void UpdateUI(ItemInstance item)
+	public void UpdateInventoryUI(ItemInstance item)
 	{
 		for(int i = 0; i < inventoryItems.Count; i++)
 		{
 			if(inventoryItems[i].icon.sprite == null)
 			{
 				inventoryItems[i].ChangeSlotToActive(item);
+				return;
+			}
+
+		}
+	}
+
+	public void UpdateCraftingUI(ItemInstance item)
+	{
+		for (int i = 0; i < craftingItems.Count; i++)
+		{
+			if (craftingItems[i].icon.sprite == null)
+			{
+				print("This works");
+				craftingItems[i].ChangeCraftingSlotToActive(item);
 				return;
 			}
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -35,7 +36,7 @@ public class InventorySystem : MonoBehaviour
 		if (inventoryItems.Count < inventorySpace)
 		{
 			inventoryItems.Add(itemInstance);
-			InventoryUI.instance.UpdateUI(itemInstance);
+			InventoryUI.instance.UpdateInventoryUI(itemInstance);
 			return true;
 		}
 
@@ -44,11 +45,17 @@ public class InventorySystem : MonoBehaviour
 
 	}
 
-	public void Remove(ItemInstance refItem)
+	public void Drop(ItemInstance refItem)
 	{
 		inventoryItems.Remove(refItem);
 		print("Remove item");
 		Instantiate(refItem.prefab, dropPoint.position, Quaternion.identity);
+	}
+
+	public void MoveToCrafting(ItemInstance refItem)
+	{
+		inventoryItems.Remove(refItem);
+		CraftingSystem.instance.UseItem(refItem);
 		
 	}
 

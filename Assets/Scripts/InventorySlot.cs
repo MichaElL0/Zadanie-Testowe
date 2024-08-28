@@ -13,7 +13,6 @@ public class InventorySlot : MonoBehaviour
     [SerializeField]ItemInstance itemInstance;
 
     public static event Action onDrop;
-    public static event Action onCraft;
 
     public void ChangeSlotToActive(ItemInstance item)
     {
@@ -37,14 +36,30 @@ public class InventorySlot : MonoBehaviour
 
         if (itemInstance != null)
         {
-            InventorySystem.instance.Remove(itemInstance);
+            InventorySystem.instance.Drop(itemInstance);
             ChangeSlotToUnactive();
         }
 
     }
 
-    public void CraftItem()
+    public void UseItemInCrafting()
     {
-        onCraft?.Invoke();
+
+        if(CraftingSystem.instance.craftingItems.Count < 2)
+        {
+			InventorySystem.instance.MoveToCrafting(itemInstance);
+			ChangeSlotToUnactive();
+		}
+        else
+        {
+            Debug.LogError("Crafting is full!");
+        }
+
+        
+
+        
+
+        print("Add item to crafting list");
+        print("Update crafting item UI");
     }
 }
