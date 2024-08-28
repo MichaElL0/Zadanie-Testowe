@@ -39,16 +39,15 @@ public class InventorySystem : MonoBehaviour
 			InventoryUI.instance.UpdateInventoryUI(itemInstance);
 			return true;
 		}
-
+		
+			
 		Debug.Log("Inventory is Full!");
 		return false;
-
 	}
 
 	public void Drop(ItemInstance refItem)
 	{
 		inventoryItems.Remove(refItem);
-		print("Remove item");
 		Instantiate(refItem.prefab, dropPoint.position, Quaternion.identity);
 	}
 

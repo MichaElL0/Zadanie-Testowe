@@ -14,6 +14,8 @@ public class PlayerMouseLook : MonoBehaviour
 
 	private GameObject previousHitObject = null;
 
+	public AudioSource interactAduio;
+
 	// Start is called before the first frame update
 	void Start()
     {
@@ -42,6 +44,8 @@ public class PlayerMouseLook : MonoBehaviour
 			{
 				if(hitInfo.transform.TryGetComponent<ItemObject>(out ItemObject item)) 
 				{
+
+					interactAduio.Play();
 					item.PickupItem();
 				}
 			}

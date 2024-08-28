@@ -57,7 +57,6 @@ public class InventoryUI : MonoBehaviour
 		{
 			if (craftingItems[i].icon.sprite == null)
 			{
-				print("This works");
 				craftingItems[i].ChangeCraftingSlotToActive(item);
 				return;
 			}

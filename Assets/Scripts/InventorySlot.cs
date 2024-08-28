@@ -13,6 +13,7 @@ public class InventorySlot : MonoBehaviour
     [SerializeField]ItemInstance itemInstance;
 
     public static event Action onDrop;
+    public static event Action onItemCraft;
 
     public void ChangeSlotToActive(ItemInstance item)
     {
@@ -44,11 +45,11 @@ public class InventorySlot : MonoBehaviour
 
     public void UseItemInCrafting()
     {
-
         if(CraftingSystem.instance.craftingItems.Count < 2)
         {
 			InventorySystem.instance.MoveToCrafting(itemInstance);
 			ChangeSlotToUnactive();
+            onItemCraft?.Invoke();
 		}
         else
         {

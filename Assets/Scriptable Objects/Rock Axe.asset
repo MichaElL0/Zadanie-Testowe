@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rock Axe
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 27089f947115bad43aaf1b9df91e1ac2, type: 3}
-  type: 0
+  type: 3
   prefab: {fileID: 7358268274605163447, guid: 05653b3b576500a478a377e0df5e8e6d, type: 3}

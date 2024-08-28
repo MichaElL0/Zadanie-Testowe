@@ -13,6 +13,9 @@ public class InventoryItemData : ScriptableObject
     {
         Rock,
         Wood,
-        Iron
+        Iron,
+        Tool,
+        Nail,
+        Plank
     }
 }

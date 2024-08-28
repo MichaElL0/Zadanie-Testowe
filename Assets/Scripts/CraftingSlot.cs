@@ -9,22 +9,20 @@ public class CraftingSlot : MonoBehaviour
 	public Image icon;
 	public Button unuseButton;
 	ItemInstance itemInstance;
+	
 
 	public static event Action onUnuse;
+	public static event Action onInstanceSet;
 
 	public void Unuse()
 	{
 		onUnuse?.Invoke();
-		print("Move item back to inventory");
-
-		print("Remove item from crafting");
 
 		InventorySystem.instance.AddItem(itemInstance.itemType);
 		CraftingSystem.instance.RemoveCraftingItem(itemInstance);
+		CraftItemsTogetherDontKnowBetterName.instance.craftingItemsResult.Remove(itemInstance);
 		ChangeCraftingSlotToUnactive();
-
-		print("Update UI");
-
+		CraftItemsTogetherDontKnowBetterName.instance.ChangeStateOfResultButton();
 	}
 
 	public void ChangeCraftingSlotToActive(ItemInstance item)
