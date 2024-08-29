@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CraftItemsTogetherDontKnowBetterName : MonoBehaviour
@@ -18,6 +20,10 @@ public class CraftItemsTogetherDontKnowBetterName : MonoBehaviour
 	private Dictionary<InventoryItemData, Sprite> craftingResultSprites;
 
 	public static event Action onCraftItem;
+	public UnityEvent onCraftItemEventSuccess;
+	public UnityEvent onCraftItemEventUnsuccess;
+
+	
 
 	private void Awake()
 	{
@@ -58,22 +64,29 @@ public class CraftItemsTogetherDontKnowBetterName : MonoBehaviour
 			if (result != null)
 			{
 				onCraftItem?.Invoke();
-				InventorySystem.instance.AddItem(result);
-				craftingItemsResult.Clear();
-				CraftingSystem.instance.craftingItems.Clear();
-				icon.sprite = null;
-				result = null;
-				//print($"Crafted: {result.name}");
+
+				if(AttemptCrafting(result.chanceOfCrafting))
+				{
+					InventorySystem.instance.AddItem(result);
+					onCraftItemEventSuccess.Invoke();
+					print("Success!");
+					CraftingResultClear();
+				}
+				else
+				{
+					CraftingResultClear();
+					onCraftItemEventUnsuccess.Invoke();
+					print("No success!");
+				}
 			}
-			else
-			{
-				print("No valid combination!");
-			}
+			
 		}
 		else
 		{
 			print("No space to craft!");
 		}
+
+		ChangeSlotToUnactive();
 	}
 
 	public void ChangeStateOfResultButton()
@@ -95,9 +108,7 @@ public class CraftItemsTogetherDontKnowBetterName : MonoBehaviour
 		}
 		else
 		{
-			icon.sprite = null;
-			itemInstance = null;
-			craftButton.interactable = false;
+			ChangeSlotToUnactive();
 		}
 	}
 
@@ -112,6 +123,13 @@ public class CraftItemsTogetherDontKnowBetterName : MonoBehaviour
 		icon.sprite = null;
 		itemInstance = null;
 		craftButton.interactable = false;
+	}
+
+	void CraftingResultClear()
+	{
+		craftingItemsResult.Clear();
+		CraftingSystem.instance.craftingItems.Clear();
+		icon.sprite = null;
 	}
 
 	private InventoryItemData WhatIsTheResult()
@@ -141,5 +159,19 @@ public class CraftItemsTogetherDontKnowBetterName : MonoBehaviour
 		{
 			return null;
 		}
+	}
+
+	public bool AttemptCrafting(int successRate)
+	{
+		if (successRate < 0 || successRate > 100)
+		{
+			throw new ArgumentOutOfRangeException(nameof(successRate), "Success rate must be between 0 and 100.");
+		}
+
+		int chance = UnityEngine.Random.Range(0, 100);
+
+		print("is succesfull? " + (chance < successRate));
+
+		return chance < successRate;
 	}
 }

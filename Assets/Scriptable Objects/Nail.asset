@@ -15,3 +15,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 3ed5982440a3b3c4db62766d25d50872, type: 3}
   type: 4
   prefab: {fileID: 8637357832278983685, guid: f3634acafdc414b4b905f1f352b8b70d, type: 3}
+  chanceOfCrafting: 70

@@ -8,6 +8,7 @@ public class InventoryItemData : ScriptableObject
     public Sprite icon;
     public ItemType type;
     public GameObject prefab;
+    public int chanceOfCrafting;
 
     public enum ItemType
     {
