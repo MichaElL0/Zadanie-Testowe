@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal.Profiling.Memory.Experimental;
@@ -10,7 +10,7 @@ public class InventorySlot : MonoBehaviour
     public Image icon;
     public Button dropButton;
     public Button useButton;
-    [SerializeField]ItemInstance itemInstance;
+    ItemInstance itemInstance;
 
     public static event Action onDrop;
     public static event Action onItemCraft;
@@ -20,7 +20,15 @@ public class InventorySlot : MonoBehaviour
         itemInstance = item;
 		icon.sprite = item.sprite;
         dropButton.interactable = true;
-        useButton.interactable = true;
+        if(itemInstance.itemType.type != InventoryItemData.ItemType.Tool)
+        {
+            useButton.interactable = true;
+            
+        }
+        else
+        {
+			useButton.interactable = false;
+		}
     }
 
 	public void ChangeSlotToUnactive()

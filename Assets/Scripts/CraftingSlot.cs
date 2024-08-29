@@ -12,7 +12,11 @@ public class CraftingSlot : MonoBehaviour
 	
 
 	public static event Action onUnuse;
-	public static event Action onInstanceSet;
+
+	private void OnEnable()
+	{
+		CraftItemsTogetherDontKnowBetterName.onCraftItem += ChangeCraftingSlotToUnactive;
+	}
 
 	public void Unuse()
 	{
