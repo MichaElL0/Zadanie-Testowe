@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 
-[Serializable]
+//[Serializable]
 public class ItemInstance
 {
     public InventoryItemData itemType;

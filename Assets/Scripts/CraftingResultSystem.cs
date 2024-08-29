@@ -137,28 +137,21 @@ public class CraftingResultSystem : MonoBehaviour
 		InventoryItemData item1 = craftingItemsResult[0].itemType;
 		InventoryItemData item2 = craftingItemsResult[1].itemType;
 
-		if (item1.type == InventoryItemData.ItemType.Wood && item2.type == InventoryItemData.ItemType.Wood)
+		switch(item1.type, item2.type)
 		{
-			return craftingItemsResultData[0]; // Wooden Plank
+			case(InventoryItemData.ItemType.Wood, InventoryItemData.ItemType.Wood):
+				return craftingItemsResultData[0];
+			case (InventoryItemData.ItemType.Wood, InventoryItemData.ItemType.Rock):
+			case (InventoryItemData.ItemType.Rock, InventoryItemData.ItemType.Wood):
+				return craftingItemsResultData[1];
+			case (InventoryItemData.ItemType.Iron, InventoryItemData.ItemType.Iron):
+				return craftingItemsResultData[2];
+			case (InventoryItemData.ItemType.Plank, InventoryItemData.ItemType.Nail):
+			case (InventoryItemData.ItemType.Nail, InventoryItemData.ItemType.Plank):
+				return craftingItemsResultData[3];
 		}
-		else if ((item1.type == InventoryItemData.ItemType.Wood && item2.type == InventoryItemData.ItemType.Rock)) 
-		{
-			return craftingItemsResultData[1]; // Axe
-		}
-		else if (item1.type == InventoryItemData.ItemType.Iron && item2.type == InventoryItemData.ItemType.Iron)
-		{
-			return craftingItemsResultData[2]; // Nail
-		}
-		else if ((item1.type == InventoryItemData.ItemType.Plank || item1.type == InventoryItemData.ItemType.Nail))
-		{
-			return craftingItemsResultData[3]; // Plank with Nails
-		}
-		else
-		{
-			ChangeSlotToUnactive();
-			return null;
-		}
-		
+		ChangeSlotToUnactive();
+		return null;
 	}
 
 	public bool AttemptCrafting(int successRate)

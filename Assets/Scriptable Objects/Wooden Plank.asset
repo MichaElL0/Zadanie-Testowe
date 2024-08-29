@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Wooden Plank
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: a4f710aafdb6d2a459e9412875840f57, type: 3}
-  type: 1
+  type: 5
   prefab: {fileID: 2352732223490597168, guid: 8d65bb203716cd943b83062bf71e68b2, type: 3}
   chanceOfCrafting: 80
