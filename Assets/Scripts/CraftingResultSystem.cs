@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class CraftItemsTogetherDontKnowBetterName : MonoBehaviour
+public class CraftingResultSystem : MonoBehaviour
 {
-	public static CraftItemsTogetherDontKnowBetterName instance;
+	public static CraftingResultSystem instance;
 
 	public Image icon;
 	public Button craftButton;
@@ -141,8 +141,7 @@ public class CraftItemsTogetherDontKnowBetterName : MonoBehaviour
 		{
 			return craftingItemsResultData[0]; // Wooden Plank
 		}
-		else if ((item1.type == InventoryItemData.ItemType.Wood || item1.type == InventoryItemData.ItemType.Rock) &&
-				 (item2.type == InventoryItemData.ItemType.Wood || item2.type == InventoryItemData.ItemType.Rock))
+		else if ((item1.type == InventoryItemData.ItemType.Wood && item2.type == InventoryItemData.ItemType.Rock)) 
 		{
 			return craftingItemsResultData[1]; // Axe
 		}
@@ -150,15 +149,16 @@ public class CraftItemsTogetherDontKnowBetterName : MonoBehaviour
 		{
 			return craftingItemsResultData[2]; // Nail
 		}
-		else if ((item1.type == InventoryItemData.ItemType.Nail || item1.type == InventoryItemData.ItemType.Plank) &&
-				 (item2.type == InventoryItemData.ItemType.Plank || item2.type == InventoryItemData.ItemType.Nail))
+		else if ((item1.type == InventoryItemData.ItemType.Plank || item1.type == InventoryItemData.ItemType.Nail))
 		{
 			return craftingItemsResultData[3]; // Plank with Nails
 		}
 		else
 		{
+			ChangeSlotToUnactive();
 			return null;
 		}
+		
 	}
 
 	public bool AttemptCrafting(int successRate)

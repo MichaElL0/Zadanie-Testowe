@@ -15,7 +15,7 @@ public class CraftingSlot : MonoBehaviour
 
 	private void OnEnable()
 	{
-		CraftItemsTogetherDontKnowBetterName.onCraftItem += ChangeCraftingSlotToUnactive;
+		CraftingResultSystem.onCraftItem += ChangeCraftingSlotToUnactive;
 	}
 
 	public void Unuse()
@@ -24,9 +24,9 @@ public class CraftingSlot : MonoBehaviour
 
 		InventorySystem.instance.AddItem(itemInstance.itemType);
 		CraftingSystem.instance.RemoveCraftingItem(itemInstance);
-		CraftItemsTogetherDontKnowBetterName.instance.craftingItemsResult.Remove(itemInstance);
+		CraftingResultSystem.instance.craftingItemsResult.Remove(itemInstance);
 		ChangeCraftingSlotToUnactive();
-		CraftItemsTogetherDontKnowBetterName.instance.ChangeStateOfResultButton();
+		CraftingResultSystem.instance.ChangeStateOfResultButton();
 	}
 
 	public void ChangeCraftingSlotToActive(ItemInstance item)

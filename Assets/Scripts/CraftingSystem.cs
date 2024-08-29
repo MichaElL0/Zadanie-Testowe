@@ -30,7 +30,7 @@ public class CraftingSystem : MonoBehaviour
 		if (craftingItems.Count < inventorySpace)
 		{
 			craftingItems.Add(item);
-			CraftItemsTogetherDontKnowBetterName.instance.craftingItemsResult.Add(item);
+			CraftingResultSystem.instance.craftingItemsResult.Add(item);
 			InventoryUI.instance.UpdateCraftingUI(item);
 			return true;
 		}
