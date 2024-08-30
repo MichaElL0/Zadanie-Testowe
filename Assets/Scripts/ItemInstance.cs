@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-
 //[Serializable]
 public class ItemInstance
 {
@@ -15,6 +14,4 @@ public class ItemInstance
         sprite = newItem.icon;
         prefab = newItem.prefab;
     }
-
-    
 }

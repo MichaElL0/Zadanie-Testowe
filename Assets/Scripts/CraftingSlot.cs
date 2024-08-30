@@ -11,16 +11,21 @@ public class CraftingSlot : MonoBehaviour
 	ItemInstance itemInstance;
 	
 
-	public static event Action onUnuse;
+	public static event Action OnUnuse;
 
 	private void OnEnable()
 	{
-		CraftingResultSystem.onCraftItem += ChangeCraftingSlotToUnactive;
+		CraftingResultSystem.OnCraftItem += ChangeCraftingSlotToUnactive;
+	}
+
+	private void OnDisable()
+	{
+		CraftingResultSystem.OnCraftItem += ChangeCraftingSlotToUnactive;
 	}
 
 	public void Unuse()
 	{
-		onUnuse?.Invoke();
+		OnUnuse?.Invoke();
 
 		InventorySystem.instance.AddItem(itemInstance.itemType);
 		CraftingSystem.instance.RemoveCraftingItem(itemInstance);

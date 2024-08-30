@@ -11,7 +11,6 @@ public class CraftingResultSystem : MonoBehaviour
 
 	public Image icon;
 	public Button craftButton;
-	ItemInstance itemInstance;
 
 	[Header("Crafting items")]
 	public List<ItemInstance> craftingItemsResult;
@@ -19,7 +18,7 @@ public class CraftingResultSystem : MonoBehaviour
 
 	private Dictionary<InventoryItemData, Sprite> craftingResultSprites;
 
-	public static event Action onCraftItem;
+	public static event Action OnCraftItem;
 	public UnityEvent onCraftItemEventSuccess;
 	public UnityEvent onCraftItemEventUnsuccess;
 
@@ -49,8 +48,14 @@ public class CraftingResultSystem : MonoBehaviour
 
 	private void OnEnable()
 	{
-		InventorySlot.onItemCraft += ChangeStateOfResultButton;
+		InventorySlot.OnItemCraft += ChangeStateOfResultButton;
 	}
+
+	private void OnDisable()
+	{
+		InventorySlot.OnItemCraft -= ChangeStateOfResultButton;
+	}
+
 
 	public void Craft()
 	{
@@ -63,14 +68,14 @@ public class CraftingResultSystem : MonoBehaviour
 
 			if (result != null)
 			{
-				onCraftItem?.Invoke();
+				OnCraftItem?.Invoke();
 
 				if(AttemptCrafting(result.chanceOfCrafting))
 				{
 					InventorySystem.instance.AddItem(result);
 					onCraftItemEventSuccess.Invoke();
-					print("Success!");
 					CraftingResultClear();
+					print("Success!");
 				}
 				else
 				{
@@ -91,7 +96,7 @@ public class CraftingResultSystem : MonoBehaviour
 
 	public void ChangeStateOfResultButton()
 	{
-		if (CraftingSystem.instance.craftingItems.Count == 2)
+		if (CraftingSystem.instance.craftingItems.Count == CraftingSystem.instance.inventorySpace)
 		{
 			craftButton.interactable = true;
 			InventoryItemData result = WhatIsTheResult();
@@ -121,7 +126,6 @@ public class CraftingResultSystem : MonoBehaviour
 	public void ChangeSlotToUnactive()
 	{
 		icon.sprite = null;
-		itemInstance = null;
 		craftButton.interactable = false;
 	}
 
@@ -161,7 +165,7 @@ public class CraftingResultSystem : MonoBehaviour
 			throw new ArgumentOutOfRangeException(nameof(successRate), "Success rate must be between 0 and 100.");
 		}
 
-		int chance = UnityEngine.Random.Range(0, 100);
+		int chance = UnityEngine.Random.Range(0, 101);
 
 		print("is succesfull? " + (chance < successRate));
 

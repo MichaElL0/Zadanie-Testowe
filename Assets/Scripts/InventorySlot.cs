@@ -12,8 +12,8 @@ public class InventorySlot : MonoBehaviour
     public Button useButton;
     ItemInstance itemInstance;
 
-    public static event Action onDrop;
-    public static event Action onItemCraft;
+    public static event Action OnDrop;
+    public static event Action OnItemCraft;
 
     public void ChangeSlotToActive(ItemInstance item)
     {
@@ -41,7 +41,7 @@ public class InventorySlot : MonoBehaviour
 
     public void DropItem()
     {
-        onDrop?.Invoke();
+        OnDrop?.Invoke();
 
         if (itemInstance != null)
         {
@@ -57,7 +57,7 @@ public class InventorySlot : MonoBehaviour
         {
 			InventorySystem.instance.MoveToCrafting(itemInstance);
 			ChangeSlotToUnactive();
-            onItemCraft?.Invoke();
+            OnItemCraft?.Invoke();
 		}
         else
         {

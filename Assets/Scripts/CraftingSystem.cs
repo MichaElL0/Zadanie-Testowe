@@ -11,6 +11,11 @@ public class CraftingSystem : MonoBehaviour
 
 	private void Awake()
 	{
+		if (instance != null)
+		{
+			Destroy(gameObject);
+			return;
+		}
 		instance = this;
 
 		craftingItems = new List<ItemInstance>();

@@ -15,6 +15,11 @@ public class InventorySystem : MonoBehaviour
 
 	private void Awake()
 	{
+		if (instance != null)
+		{
+			Destroy(gameObject);
+			return;
+		}
 		instance = this;
 
 		inventoryItems = new List<ItemInstance>();
